@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <section>
+          <h2>Filtered Library</h2>
+          <div class="form-group">
+              <label for="filter">Filter by genre:</label>
+              <input ng-model="filterGenre" type="text" class="form-control" id="filter">
+          </div>
+          <div class="form-group">
+              <label for="filter">Filter by title:</label>
+              <input ng-model="filterTitle" type="text" class="form-control" id="filter">
+          </div>
+          <div class="form-group">
+              <label for="filter">Filter by release year:</label>
+              <input ng-model="filterYear" type="text" class="form-control" id="filter">
+          </div>
+          <div class="form-group">
+              <label for="filter">Filter by author:</label>
+              <input ng-model="filterAuthor" type="text" class="form-control" id="filter">
+          </div>
+          <table class="table table-striped table-bordered">
+              <tr>
+                <th>
+                  Title
+                </th>
+                <th>
+                  Author
+                </th>
+                <th>
+                  Genre
+                </th>
+                <th>
+                  Year
+                </th>
+              </tr>
+              <tr ng-repeat="book in books | orderBy : 'year' | filter:{genre: filterGenre} | filter:{author: filterAuthor} | filter:{title: filterTitle} | filter:{year: filterYear}">
+                <td>
+                  <strong>{{book.title}}</strong>
+                </td>
+                <td>
+                  {{book.author}}
+                </td>
+                <td>
+                  {{book.genre}}
+                </td>
+                <td>
+                  {{book.year}}
+                </td>
+              </tr>
+          </table>
+          <table class="table table-striped table-bordered">
+            <th>
+              Genre to filter by
+            </th>
+            <tr ng-repeat="book in books | orderBy : 'genre' | unique : 'genre'" ng-click="showFiltered(book.genre)">
+              <td >
+                <strong>{{book.genre}}</strong>
+              </td>
+            </tr>
+          </table>
+
+          <table class="table table-striped table-bordered" ng-show=filteredTableVisible>
+            <tr>
+              <th>
+                Title
+              </th>
+              <th>
+                Author
+              </th>
+              <th>
+                Genre
+              </th>
+              <th>
+                Year
+              </th>
+            </tr>
+            <tr ng-repeat="book in books | orderBy : 'genre' | filter : {genre: selectedBookGenre}">
+              <td >
+                <strong>{{book.title}}</strong>
+              </td>
+              <td >
+                {{book.author}}
+              </td>
+              <td >
+                {{book.genre}}
+              </td>
+              <td >
+                {{book.year}}
+              </td>
+            </tr>
+          </table>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

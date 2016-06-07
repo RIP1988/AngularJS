@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="modal-content">
+    <div class="modal-header">
+        <h3 class="modal-title">Add new book</h3>
+    </div>
+    <div class="modal-body">
+      <form name="modalForm">
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input ng-required="true" ng-model="addedBook.title" type="text" class="form-control" id="title">
+          </div>
+          <div class="form-group">
+            <label for="author">Author:</label>
+            <input ng-required="true" ng-model="addedBook.author" type="text" class="form-control" id="author">
+          </div>
+          <div class="form-group">
+            <label for="genre">Genre:</label>
+            <input ng-model="addedBook.genre" type="text" class="form-control" id="genre">
+          </div>
+          <div class="form-group">
+            <label for="year">Release date:</label>
+            <!--<datepicker ng-model="date.value" min="minDate" placeholder="Set release date" show-weeks="false" id="year"></datepicker>-->
+            <label for="year">Year:</label>
+            <input ng-model="addedBook.year" ng-pattern="/^\d+$/" type="text" class="form-control" id="year">
+          </div>
+        </div>
+        <div class="modal-footer ">
+            <button ng-disabled="modalForm.$invalid" class="btn btn-primary" data-ng-click="ok()">Add book</button>
+        </div>
+      </form>
+</div>
+</body>
+</html>
